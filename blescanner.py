@@ -2,13 +2,11 @@ from PyQt5.QtWidgets import QMainWindow
 from PyQt5 import QtCore
 from pylayout import Ui_BLEScanner
 import bleak
-import asyncio
-
+import sys
 from qasync import asyncSlot, asyncClose
 from datetime import datetime
 from bleak.backends.device import BLEDevice
 from bleak.backends.scanner import AdvertisementData
-import binascii
 
 # Work around for error: QWindowsContext: OleInitialize() failed:  "COM error 0xffffffff80010106 RPC_E_CHANGED_MODE (Unknown error 0x080010106)"
 # Per: https://github.com/hbldh/bleak/issues/580#issuecomment-867928327
@@ -64,7 +62,7 @@ class BleScanner(QMainWindow):
 
     @asyncClose
     async def exit_app(self,event):
-        exit()
+        sys.exit()
     
     @asyncSlot()
     async def start_scan(self):
